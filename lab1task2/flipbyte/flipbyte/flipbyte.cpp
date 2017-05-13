@@ -6,29 +6,29 @@ using namespace std;
 
 string Dec2bin(int number)
 {
-	string bin_number = "";
+	string binNumber = "";
 	for (int i = 7; i >= 0; i--)
 	{
 		if (number % 2 == 1)
 		{
-			bin_number = '1' + bin_number;
+			binNumber = '1' + binNumber;
 		}
 		else
 		{
-			bin_number = '0' + bin_number;
+			binNumber = '0' + binNumber;
 		}
 		number = number / 2;
 	}
-	return bin_number;
+	return binNumber;
 }
 
-int Bin2dec(string bin_number)
+int Bin2dec(string binNumber)
 {
 	int number = 0;
 	int k = 7;
 	for (int i = 0; i < 8; i++)
 	{
-		if (bin_number[i] == '1')
+		if (binNumber[i] == '1')
 		{
 			int temp = 1;
 			for (int j = 1; j <= k; j++)
@@ -57,9 +57,9 @@ string FlipNumber(string number)
 
 void Flip(int number)
 {
-	string bin_number = Dec2bin(number);
-	string flip_bin_number  = FlipNumber(bin_number);
-	number = Bin2dec(flip_bin_number);
+	string binNumber = Dec2bin(number);
+	string flipBinNumber  = FlipNumber(binNumber);	
+	number = Bin2dec(flipBinNumber);
 	cout << number << endl;
 }
 
@@ -84,7 +84,7 @@ int main(int arg_c, char * arg_v[])
 	}
 	else
 	{
-		cout << "Enter correct number/n";
+		cout << "Enter correct number" << endl;
 		return 1;
 	}
 	return 0;

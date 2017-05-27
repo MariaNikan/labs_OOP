@@ -17,8 +17,11 @@ void ReadNumbers(istream& stream, vector<double>& numbers)
 
 void PrintOutResult(ostream& stream, vector<double>& numbers)
 {
-	for_each(numbers.begin(), numbers.end(), [](double &element) { element = floor(element * 1000.0 + 0.5) / 1000.0;});
-	copy(numbers.begin(), numbers.end(), ostream_iterator<double>(stream, " "));
+	
+	for (int i = 0; i < numbers.size(); i++)
+	{
+		stream << setprecision(3) << fixed << numbers[i] << " ";
+	}
 }
 
 void SortNumbers(vector<double>& numbers)
@@ -26,12 +29,13 @@ void SortNumbers(vector<double>& numbers)
 	sort(numbers.begin(), numbers.end());
 }
 
-vector<double>::const_iterator FindMinNumberIterator(const vector<double>& numbers)
+double FindMinNumber(const vector<double>& numbers)
 {
-	return min_element(numbers.begin(), numbers.end());
+	return *min_element(numbers.begin(), numbers.end());
 }
 
 void MultiplyNumbersByNumber(vector<double>& numbers, double number)
 {
-	for_each(numbers.begin(), numbers.end(), [number](double &element) { element *= number;});
+	//for_each(numbers.begin(), numbers.end(), [number](double &element) { element *= number;});
+	transform(numbers.begin(), numbers.end(), numbers.begin(), [number](double& elem) {return elem *= number; });
 }

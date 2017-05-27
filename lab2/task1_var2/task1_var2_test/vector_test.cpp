@@ -44,21 +44,14 @@ BOOST_AUTO_TEST_SUITE(sort_numbers_function)
 
 BOOST_AUTO_TEST_SUITE_END()
 
-BOOST_AUTO_TEST_SUITE(find_min_number_iterator_function)
+BOOST_AUTO_TEST_SUITE(find_min_number_function)
 
-	BOOST_AUTO_TEST_CASE(returns_min_number_iterator_from_not_empty_vector)
+	BOOST_AUTO_TEST_CASE(returns_min_number_from_vector)
 	{
 		double expectedMinNumber = -100.2;
 		vector<double> numbers = { 12.7, -12.7, 0, 1.1, -100.2 };
-		double minNumber = *FindMinNumberIterator(numbers);
+		double minNumber = FindMinNumber(numbers);
 		BOOST_CHECK_EQUAL(minNumber, expectedMinNumber);
-	}
-
-	BOOST_AUTO_TEST_CASE(returns_end_iterator_from_empty_vector)
-	{
-		vector<double> numbers;
-		auto minNumber = FindMinNumberIterator(numbers);
-		BOOST_CHECK(minNumber == numbers.end());
 	}
 
 BOOST_AUTO_TEST_SUITE_END()
@@ -89,7 +82,7 @@ BOOST_AUTO_TEST_SUITE(print_out_result_function)
 	
 	BOOST_AUTO_TEST_CASE(prints_out_expexted_vector)
 	{
-		string expectedOutputStringStream = "12.71 -12.745 0 1.1 -100.23 ";
+		string expectedOutputStringStream = "12.710 -12.745 0.000 1.100 -100.230 ";
 		stringstream outputStream("");
 		vector<double> numbers = { 12.70975, -12.745, 0, 1.1, -100.23 };
 		PrintOutResult(outputStream, numbers);

@@ -78,6 +78,18 @@ BOOST_AUTO_TEST_SUITE(multiply_numbers_by_number_function)
 
 BOOST_AUTO_TEST_SUITE_END()
 
+BOOST_AUTO_TEST_SUITE(proccess_vector_function)
+
+	BOOST_AUTO_TEST_CASE(returns_expexted_vector)
+	{
+		vector<double> expectedVector = { -1.157, 1, 0, -1.1, -100.23 };
+		vector<double> numbers = { 1.157, -1, 0, 1.1, 100.23 };
+		ProcessVector(numbers);
+		BOOST_CHECK(numbers == expectedVector);
+	}
+
+BOOST_AUTO_TEST_SUITE_END()
+
 BOOST_AUTO_TEST_SUITE(print_out_result_function)
 	
 	BOOST_AUTO_TEST_CASE(prints_out_expexted_vector)
@@ -85,6 +97,15 @@ BOOST_AUTO_TEST_SUITE(print_out_result_function)
 		string expectedOutputStringStream = "12.710 -12.745 0.000 1.100 -100.230 ";
 		stringstream outputStream("");
 		vector<double> numbers = { 12.70975, -12.745, 0, 1.1, -100.23 };
+		PrintOutResult(outputStream, numbers);
+		BOOST_CHECK_EQUAL(outputStream.str(), expectedOutputStringStream);
+	}
+
+	BOOST_AUTO_TEST_CASE(prints_out_empty_vector)
+	{
+		string expectedOutputStringStream = "Vector is empty";
+		stringstream outputStream("");
+		vector<double> numbers;
 		PrintOutResult(outputStream, numbers);
 		BOOST_CHECK_EQUAL(outputStream.str(), expectedOutputStringStream);
 	}

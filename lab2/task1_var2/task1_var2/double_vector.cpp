@@ -23,10 +23,7 @@ void PrintOutResult(ostream& stream, vector<double>& numbers)
 	}
 	else
 	{
-		for (int i = 0; i < numbers.size(); i++)
-		{
-			stream << setprecision(3) << fixed << numbers[i] << " ";
-		}
+		copy(numbers.begin(), numbers.end(), ostream_iterator<double>(stream << setprecision(3) << fixed, " "));
 	}
 }
 
@@ -47,7 +44,9 @@ void MultiplyNumbersByNumber(vector<double>& numbers, double number)
 
 void ProcessVector(vector<double>& numbers)
 {
-	double minNumber = FindMinNumber(numbers);
-	MultiplyNumbersByNumber(numbers, minNumber);
-	SortNumbers(numbers);
+	if (numbers.size() != 0)
+	{
+		double minNumber = FindMinNumber(numbers);
+		MultiplyNumbersByNumber(numbers, minNumber);
+	}
 }

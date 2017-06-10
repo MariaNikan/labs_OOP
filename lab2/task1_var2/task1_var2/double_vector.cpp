@@ -17,10 +17,16 @@ void ReadNumbers(istream& stream, vector<double>& numbers)
 
 void PrintOutResult(ostream& stream, vector<double>& numbers)
 {
-	
-	for (int i = 0; i < numbers.size(); i++)
+	if (numbers.size() == 0)
 	{
-		stream << setprecision(3) << fixed << numbers[i] << " ";
+		stream << "Vector is empty";
+	}
+	else
+	{
+		for (int i = 0; i < numbers.size(); i++)
+		{
+			stream << setprecision(3) << fixed << numbers[i] << " ";
+		}
 	}
 }
 
@@ -36,6 +42,12 @@ double FindMinNumber(const vector<double>& numbers)
 
 void MultiplyNumbersByNumber(vector<double>& numbers, double number)
 {
-	//for_each(numbers.begin(), numbers.end(), [number](double &element) { element *= number;});
-	transform(numbers.begin(), numbers.end(), numbers.begin(), [number](double& elem) {return elem *= number; });
+	transform(numbers.begin(), numbers.end(), numbers.begin(), [number](double elem) {return elem * number; });
+}
+
+void ProcessVector(vector<double>& numbers)
+{
+	double minNumber = FindMinNumber(numbers);
+	MultiplyNumbersByNumber(numbers, minNumber);
+	SortNumbers(numbers);
 }

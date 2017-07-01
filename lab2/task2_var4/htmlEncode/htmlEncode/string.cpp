@@ -19,10 +19,10 @@ void ReplaceSubstring(string& line, char symbol, string text)
 string HtmlEncode(string const& text)
 {
 	string changedString = text;
+	ReplaceSubstring(changedString, '&', "&amp;");
 	ReplaceSubstring(changedString, '"', "&quot;");
-	ReplaceSubstring(changedString, '''', "&apos;");
+	ReplaceSubstring(changedString, '\'', "&apos;");
 	ReplaceSubstring(changedString, '<', "&lt;");
 	ReplaceSubstring(changedString, '>', "&gt;");
-	ReplaceSubstring(changedString, '&', "&amp;");
 	return changedString;
 }

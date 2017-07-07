@@ -1,12 +1,12 @@
 #include "stdafx.h"
-#include "string.h"
+#include "str.h"
 
 using namespace std;
 
 int main()
 {
 	string line = "";
-	for (size_t i = 0; getline(cin, line); ++i)
+	while (getline(cin, line))
 	{
 		string changedLine = HtmlEncode(line);
 		PrintOutString(cout, changedLine);

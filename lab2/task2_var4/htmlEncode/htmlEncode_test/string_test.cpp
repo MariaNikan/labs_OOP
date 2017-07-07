@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../task2_var4/string.h"
+#include "../htmlEncode/str.h"
 
 using namespace std;
 
@@ -21,10 +21,10 @@ BOOST_AUTO_TEST_SUITE(html_encode_function)
 
 BOOST_AUTO_TEST_CASE(returns_replaced_string)
 {
-	string expectedString = "Cat &lt;says&gt; &quot;Meow&quot;. M&amp;M&apos;s";
-	string line = "Cat <says> ""Meow"". M&M’s ";
+	string expectedString = "Cat &lt;says&gt; &quot;Meow&quot;. M&amp;M&apos;s ";
+	string line = "Cat <says> \"Meow\". M&M's ";
 	string text = HtmlEncode(line);
-	BOOST_CHECK(text == expectedString);
+	BOOST_CHECK_EQUAL(text, expectedString);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

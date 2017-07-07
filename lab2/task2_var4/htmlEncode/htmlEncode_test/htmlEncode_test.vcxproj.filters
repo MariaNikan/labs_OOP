@@ -18,7 +18,7 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\htmlEncode\string.h">
+    <ClInclude Include="..\htmlEncode\str.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -29,10 +29,10 @@
     <ClCompile Include="string_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\htmlEncode\string.cpp">
+    <ClCompile Include="..\htmlEncode\str.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\htmlEncode\main.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

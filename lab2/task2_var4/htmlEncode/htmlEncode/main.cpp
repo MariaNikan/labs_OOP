@@ -9,6 +9,6 @@ int main()
 	while (getline(cin, line))
 	{
 		string changedLine = HtmlEncode(line);
-		PrintOutString(cout, changedLine);
+		cout << changedLine;
 	}
 }

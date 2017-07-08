@@ -2,11 +2,6 @@
 
 using namespace std;
 
-void PrintOutString(ostream& stream, string& text)
-{ 
-	stream << text;
-}
-
 void ReplaceSubstring(string & line, char symbol, string text)
 {
 	for (size_t pos = 0; pos < line.size(); ++pos)

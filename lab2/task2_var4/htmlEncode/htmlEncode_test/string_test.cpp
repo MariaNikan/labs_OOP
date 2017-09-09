@@ -11,7 +11,7 @@ BOOST_AUTO_TEST_SUITE(replace_substring_function)
 		string line = "is not &empty string!";
 		char symbol = '&';
 		string text = "red ";
-		ReplaceSubstring(line, symbol, text);
+		line = ReplaceSymbol(line, symbol, text);
 		BOOST_CHECK(line == expectedString);
 	}
 

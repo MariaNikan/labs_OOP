@@ -3,24 +3,30 @@
 
 using namespace std;
 
-void ReplaceSubstring(string & line, char symbol, string text)
+string ReplaceSymbol(string& line, char symbol, string text)
 {
+	string newString = "";
 	for (size_t pos = 0; pos < line.size(); ++pos)
 	{
 		if (line[pos] == symbol)
 		{
-			line.replace(pos, 1, text);
+			newString = newString + text;
+		}
+		else
+		{
+			newString = newString + line[pos];
 		}
 	}
+	return newString;
 }
 
 string HtmlEncode(string const& text)
 {
 	string changedString = text;
-	ReplaceSubstring(changedString, '&', "&amp;");
-	ReplaceSubstring(changedString, '"', "&quot;");
-	ReplaceSubstring(changedString, '\'', "&apos;");
-	ReplaceSubstring(changedString, '<', "&lt;");
-	ReplaceSubstring(changedString, '>', "&gt;");
+	changedString = ReplaceSymbol(changedString, '&', "&amp;");
+	changedString = ReplaceSymbol(changedString, '"', "&quot;");
+	changedString = ReplaceSymbol(changedString, '\'', "&apos;");
+	changedString = ReplaceSymbol(changedString, '<', "&lt;");;
+	changedString = ReplaceSymbol(changedString, '>', "&gt;");
 	return changedString;
 }

@@ -10,11 +10,11 @@ string ReplaceSymbol(string& line, char symbol, string text)
 	{
 		if (line[pos] == symbol)
 		{
-			newString = newString + text;
+			newString.append(text);
 		}
 		else
 		{
-			newString = newString + line[pos];
+			newString.push_back(line[pos]);
 		}
 	}
 	return newString;

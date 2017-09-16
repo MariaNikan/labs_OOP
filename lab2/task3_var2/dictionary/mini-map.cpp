@@ -2,10 +2,10 @@
 
 using namespace std;
 
-void ReadDictionaryFromFile(istream& input, map<string, string> & Dictionary)
+void ReadDictionary(istream& dictionaryFile, map<string, string> & EngRusDictionary)
 {
 	string line = "";
-	while (input >> line)
+	while (dictionaryFile >> line)
 	{
 		string engWord = "";
 		string rusWord = "";
@@ -18,35 +18,38 @@ void ReadDictionaryFromFile(istream& input, map<string, string> & Dictionary)
 		{
 			rusWord = rusWord + line[i];
 		}
-		Dictionary.insert(pair<string, string>(engWord, rusWord));
+		EngRusDictionary.insert(pair<string, string>(engWord, rusWord));
 	}
 }
 
-void ReadDictionary(string dictionaryFile, map<string, string> & EngRusDictionary)
+void SaveChanges(ostream& dictionaryFile, map <string, string> Dictionary)
 {
+	for (auto i = Dictionary.begin(); i != Dictionary.end(); ++i)
+	{
+		dictionaryFile << i->first << " : " << i->second << endl;
+	}
+}
+
+void CommunicateWithUser(string dictionaryFile)
+{
+	map<string, string> EngRusDictionary;
 	ifstream dictionary(dictionaryFile);
 	if (!dictionary.is_open())
 	{
 		cout << "Failed to open " << dictionaryFile << " for reading\n";
 		return;
 	}
-	ReadDictionaryFromFile(dictionary, EngRusDictionary);
-}
-
-void CommunicateWithUser(string dictionary)
-{
-	map<string, string> EngRusDictionary;
 	ReadDictionary(dictionary, EngRusDictionary);
+	dictionary.close();
 	string line = "";
 	map <string, string> TempEngRusDictionary = EngRusDictionary;
 	while (getline(cin, line))
 	{
-		if (line != "...")
+		if (line != "...") 
 		{
-			auto translation = EngRusDictionary.find(line)->second;
-			if (translation != EngRusDictionary.end()->second)
+			if (EngRusDictionary.find(line) != EngRusDictionary.end())
 			{
-				cout << translation << endl;
+				cout << EngRusDictionary.find(line)->second << endl;
 			}
 			else
 			{
@@ -58,6 +61,7 @@ void CommunicateWithUser(string dictionary)
 					TempEngRusDictionary.insert(pair<string, string>(line, str));
 					cout << "Word " << line << "saved as " << str << endl;
 				}
+				cin >> line;
 			}
 		}
 		else
@@ -69,9 +73,15 @@ void CommunicateWithUser(string dictionary)
 				cin >> out;
 				if ((out == "y") || (out == "Y"))
 				{
-					EngRusDictionary = TempEngRusDictionary;
+					ofstream dictionary(dictionaryFile);
+					SaveChanges(dictionary, TempEngRusDictionary);
 					cout << "The changes are saved. Goodbye." << endl;
 				}
+			}
+			else
+			{
+				cout << "Goodbye!" << endl;
+				return;
 			}
 		}
 	}
